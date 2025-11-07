@@ -183,6 +183,7 @@ const boldBtn = document.getElementById('boldBtn');
 const italicBtn = document.getElementById('italicBtn');
 const underlineBtn = document.getElementById('underlineBtn');
 const saveBtn = document.getElementById('saveBtn');
+const loadBtn = document.getElementById('loadBtn');
 const fontSelector = document.getElementById('fontSelector');
 const italicSelector = document.getElementById('italicSelector');
 const underlineSelector = document.getElementById('underlineSelector');
@@ -240,7 +241,7 @@ underlineSelector.addEventListener('change', () => {
   underlineSelector.style.display = 'none';
 });
 
-// ✅ FIXED SAVE FUNCTION (works in all browsers)
+// ✅ SAVE FUNCTION
 saveBtn.addEventListener('click', () => {
   const text = editor.value.trim();
   if (!text) {
@@ -260,6 +261,11 @@ saveBtn.addEventListener('click', () => {
   } catch (err) {
     alert("Download failed: " + err.message);
   }
+});
+
+// ✅ LOAD BUTTON (opens your GitHub load.html page)
+loadBtn.addEventListener('click', () => {
+  window.location.href = "load.html"; // ← replace with your actual GitHub link
 });
 </script>
 </body>
