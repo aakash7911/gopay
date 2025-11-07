@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .form-section {
+            margin-bottom: 20px;
+        }
+        .resume-output {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+        .resume-output h2 {
+            color: #007bff;
+        }
+        table {
+            width: 100%;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        .btn-generate {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-generate:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">Resume Generator</h1>
+        <form id="resumeForm">
+            <div class="form-section">
+                <h3>Personal Information</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="address" placeholder="Enter your address" required>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <label for="mobile" class="form-label">Mobile</label>
+                        <input type="text" class="form-control" id="mobile" placeholder="Enter mobile number" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter email address" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="dob" class="form-label">Date of Birth</label>
+                        <input type="text" class="form-control" id="dob" placeholder="e.g. 10 March 2002" required>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <label for="gender" class="form-label">Gender</label>
+                        <input type="text" class="form-control" id="gender" placeholder="Male/Female/Other" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="nationality" class="form-label">Nationality</label>
+                        <input type="text" class="form-control" id="nationality" placeholder="Enter your nationality" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="languages" class="form-label">Languages Known</label>
+                        <input type="text" class="form-control" id="languages" placeholder="e.g. Hindi, English" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Career Objective</h3>
+                <textarea class="form-control" id="objective" rows="3" placeholder="Write your career objective" required></textarea>
+            </div>
+
+            <div class="form-section">
+                <h3>Educational Qualification</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Qualification</th>
+                            <th>Board / University</th>
+                            <th>Year</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" class="form-control" id="edu1_qual" placeholder="e.g. B.A. (Bachelor of Arts)" required></td>
+                            <td><input type="text" class="form-control" id="edu1_board" placeholder="e.g. Rajasthan University" required></td>
+                            <td><input type="text" class="form-control" id="edu1_year" placeholder="e.g. 2023" required></td>
+                            <td><input type="text" class="form-control" id="edu1_perc" placeholder="e.g. 72%" required></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" id="edu2_qual" placeholder="e.g. 12th (Senior Secondary)" required></td>
+                            <td><input type="text" class="form-control" id="edu2_board" placeholder="e.g. RBSE" required></td>
+                            <td><input type="text" class="form-control" id="edu2_year" placeholder="e.g. 2020" required></td>
+                            <td><input type="text" class="form-control" id="edu2_perc" placeholder="e.g. 78%" required></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" id="edu3_qual" placeholder="e.g. 10th (Secondary)" required></td>
+                            <td><input type="text" class="form-control" id="edu3_board" placeholder="e.g. RBSE" required></td>
+                            <td><input type="text" class="form-control" id="edu3_year" placeholder="e.g. 2018" required></td>
+                            <td><input type="text" class="form-control" id="edu3_perc" placeholder="e.g. 80%" required></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="form-section">
+                <h3>Technical Skills</h3>
+                <textarea class="form-control" id="skills" rows="4" placeholder="List your skills" required></textarea>
+            </div>
+
+            <div class="form-section">
+                <h3>Experience</h3>
+                <div class="mb-3">
+                    <label for="exp_company" class="form-label">Company Name</label>
+                    <input type="text" class="form-control" id="exp_company" placeholder="Enter company name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="exp_position" class="form-label">Position</label>
+                    <input type="text" class="form-control" id="exp_position" placeholder="Enter your position" required>
+                </div>
+                <div class="mb-3">
+                    <label for="exp_duration" class="form-label">Duration</label>
+                    <input type="text" class="form-control" id="exp_duration" placeholder="e.g. June 2023 – Present" required>
+                </div>
+                <div class="mb-3">
+                    <label for="exp_resp" class="form-label">Responsibilities</label>
+                    <textarea class="form-control" id="exp_resp" rows="3" placeholder="Describe your responsibilities" required></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Strengths</h3>
+                <textarea class="form-control" id="strengths" rows="3" placeholder="List your strengths" required></textarea>
+            </div>
+
+            <div class="form-section">
+                <h3>Hobbies</h3>
+                <textarea class="form-control" id="hobbies" rows="3" placeholder="List your hobbies" required></textarea>
+            </div>
+
+            <div class="form-section">
+                <h3>Declaration</h3>
+                <textarea class="form-control" id="declaration" rows="3" placeholder="Write your declaration" required></textarea>
+            </div>
+
+            <button type="button" class="btn-generate" onclick="generateResume()">Generate Resume</button>
+        </form>
+
+        <div class="resume-output" id="resumeOutput">
+            <h2 id="resumeName"></h2>
+            <p><strong>Address:</strong> <span id="resumeAddress"></span></p>
+            <p><strong>Mobile:</strong> <span id="resumeMobile"></span> | <strong>Email:</strong> <span id="resumeEmail"></span></p>
+            <p><strong>Date of Birth:</strong> <span id="resumeDob"></span> | <strong>Gender:</strong> <span id="resumeGender"></span> | <strong>Nationality:</strong> <span id="resumeNationality"></span></p>
+            <p><strong>Languages Known:</strong> <span id="resumeLanguages"></span></p>
+            <h3>Career Objective</h3>
+            <p id="resumeObjective"></p>
+            <h3>Educational Qualification</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Qualification</th>
+                        <th>Board / University</th>
+                        <th>Year</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+                <tbody id="resumeEducation"></tbody>
+            </table>
+            <h3>Technical Skills</h3>
+            <pre id="resumeSkills"></pre>
+            <h3>Experience</h3>
+            <p><strong>Company Name:</strong> <span id="resumeExpCompany"></span></p>
+            <p><strong>Position:</strong> <span id="resumeExpPosition"></span></p>
+            <p><strong>Duration:</strong> <span id="resumeExpDuration"></span></p>
+            <p><strong>Responsibilities:</strong></p>
+            <pre id="resumeExpResp"></pre>
+            <h3>Strengths</h3>
+            <pre id="resumeStrengths"></pre>
+            <h3>Hobbies</h3>
+            <pre id="resumeHobbies"></pre>
+            <h3>Declaration</h3>
+            <pre id="resumeDeclaration"></pre>
+        </div>
+    </div>
+
+    <script>
+        function generateResume() {
+            document.getElementById('resumeName').textContent = document.getElementById('name').value;
+            document.getElementById('resumeAddress').textContent = document.getElementById('address').value;
+            document.getElementById('resumeMobile').textContent = document.getElementById('mobile').value;
+            document.getElementById('resumeEmail').textContent = document.getElementById('email').value;
+            document.getElementById('resumeDob').textContent = document.getElementById('dob').value;
+            document.getElementById('resumeGender').textContent = document.getElementById('gender').value;
+            document.getElementById('resumeNationality').textContent = document.getElementById('nationality').value;
+            document.getElementById('resumeLanguages').textContent = document.getElementById('languages').value;
+            document.getElementById('resumeObjective').textContent = document.getElementById('objective').value;
+            document.getElementById('resumeSkills').textContent = document.getElementById('skills').value;
+            document.getElementById('resumeExpCompany').textContent = document.getElementById('exp_company').value;
+            document.getElementById('resumeExpPosition').textContent = document.getElementById('exp_position').value;
+            document.getElementById('resumeExpDuration').textContent = document.getElementById('exp_duration').value;
+            document.getElementById('resumeExpResp').textContent = document.getElementById('exp_resp').value;
+            document.getElementById('resumeStrengths').textContent = document.getElementById('strengths').value;
+            document.getElementById('resumeHobbies').textContent = document.getElementById('hobbies').value;
+            document.getElementById('resumeDeclaration').textContent = document.getElementById('declaration').value;
+
+            const educationTable = document.getElementById('resumeEducation');
+            educationTable.innerHTML = `
+                <tr>
+                    <td>${document.getElementById('edu1_qual').value}</td>
+                    <td>${document.getElementById('edu1_board').value}</td>
+                    <td>${document.getElementById('edu1_year').value}</td>
+                    <td>${document.getElementById('edu1_perc').value}</td>
+                </tr>
+                <tr>
+                    <td>${document.getElementById('edu2_qual').value}</td>
+                    <td>${document.getElementById('edu2_board').value}</td>
+                    <td>${document.getElementById('edu2_year').value}</td>
+                    <td>${document.getElementById('edu2_perc').value}</td>
+                </tr>
+                <tr>
+                    <td>${document.getElementById('edu3_qual').value}</td>
+                    <td>${document.getElementById('edu3_board').value}</td>
+                    <td>${document.getElementById('edu3_year').value}</td>
+                    <td>${document.getElementById('edu3_perc').value}</td>
+                </tr>
+            `;
+
+            document.getElementById('resumeOutput').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
