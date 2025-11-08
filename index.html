@@ -7,6 +7,37 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;700&family=Playfair+Display:wght@500&family=Courier+Prime&family=Dancing+Script&family=Indie+Flower&family=Great+Vibes&family=Kaushan+Script&display=swap');
+.template-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: #1a1a2e;
+  min-width: 160px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #00ffff33;
+  z-index: 10;
+  text-align: left;
+}
+
+.dropdown-content button {
+  background: none;
+  border: none;
+  color: #ccc;
+  padding: 10px 15px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.dropdown-content button:hover {
+  background: #00ffff22;
+  color: #00ffff;
+}
 
 * {
   box-sizing: border-box;
@@ -289,16 +320,69 @@ h1 {
       <div class="editor">
         <textarea id="editor" placeholder="Start creating your document here..."></textarea>
       </div>
-
       <div class="template-buttons">
-        <button class="template-btn">Resume Template</button>
-        <button class="template-btn">Invoice Template</button>
-        <button class="template-btn">Note Template</button>
-        <button class="template-btn">Rental Agreement Template</button>
-        <button class="template-btn">Full Agreement Template</button>
-      </div>
+  <!-- Resume Templates -->
+  <div class="template-dropdown">
+    <button class="template-btn" onclick="toggleDropdown('resume')">Resume Template ▾</button>
+    <div id="resumeDropdown" class="dropdown-content">
+      <button onclick="openTemplate('template1r.html')">Template 1</button>
+      <button onclick="openTemplate('template2r.html')">Template 2</button>
+      <button onclick="openTemplate('template3r.html')">Template 3</button>
+      <button onclick="openTemplate('template4r.html')">Template 4</button>
+      <button onclick="openTemplate('template5r.html')">Template 5</button>
     </div>
-  </section>
+  </div>
+
+  <!-- Invoice Templates -->
+  <div class="template-dropdown">
+    <button class="template-btn" onclick="toggleDropdown('invoice')">Invoice Template ▾</button>
+    <div id="invoiceDropdown" class="dropdown-content">
+      <button onclick="openTemplate('template1i.html')">Template 1</button>
+      <button onclick="openTemplate('template2i.html')">Template 2</button>
+      <button onclick="openTemplate('template3i.html')">Template 3</button>
+      <button onclick="openTemplate('template4i.html')">Template 4</button>
+      <button onclick="openTemplate('template5i.html')">Template 5</button>
+    </div>
+  </div>
+
+  <!-- Note Templates -->
+  <div class="template-dropdown">
+    <button class="template-btn" onclick="toggleDropdown('note')">Note Template ▾</button>
+    <div id="noteDropdown" class="dropdown-content">
+      <button onclick="openTemplate('template1n.html')">Template 1</button>
+      <button onclick="openTemplate('template2n.html')">Template 2</button>
+      <button onclick="openTemplate('template3n.html')">Template 3</button>
+      <button onclick="openTemplate('template4n.html')">Template 4</button>
+      <button onclick="openTemplate('template5n.html')">Template 5</button>
+    </div>
+  </div>
+
+  <!-- Rental Agreement Templates -->
+  <div class="template-dropdown">
+    <button class="template-btn" onclick="toggleDropdown('rental')">Rental Agreement Template ▾</button>
+    <div id="rentalDropdown" class="dropdown-content">
+      <button onclick="openTemplate('template1ra.html')">Template 1</button>
+      <button onclick="openTemplate('template2ra.html')">Template 2</button>
+      <button onclick="openTemplate('template3ra.html')">Template 3</button>
+      <button onclick="openTemplate('template4ra.html')">Template 4</button>
+      <button onclick="openTemplate('template5ra.html')">Template 5</button>
+    </div>
+  </div>
+
+  <!-- Full Agreement Templates -->
+  <div class="template-dropdown">
+    <button class="template-btn" onclick="toggleDropdown('full')">Full Agreement Template ▾</button>
+    <div id="fullDropdown" class="dropdown-content">
+      <button onclick="openTemplate('template1f.html')">Template 1</button>
+      <button onclick="openTemplate('template2f.html')">Template 2</button>
+      <button onclick="openTemplate('template3f.html')">Template 3</button>
+      <button onclick="openTemplate('template4f.html')">Template 4</button>
+      <button onclick="openTemplate('template5f.html')">Template 5</button>
+    </div>
+  </div>
+</div>
+
+      
 
   <!-- How to Use Section -->
   <section class="section">
@@ -438,6 +522,20 @@ templateSelect.addEventListener('change', () => {
   // Add more cases for other templates if needed
   templateSelect.selectedIndex = 0; // Reset to default after selection
 });
+function toggleDropdown(type) {
+  const dropdown = document.getElementById(`${type}Dropdown`);
+  const allDropdowns = document.querySelectorAll('.dropdown-content');
+  allDropdowns.forEach(d => {
+    if (d !== dropdown) d.style.display = 'none';
+  });
+  dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
+
+function openTemplate(fileName) {
+  // 👉 Update with your actual GitHub Pages base URL
+  const baseURL = "https://yourusername.github.io/yourrepo/";
+  window.location.href = baseURL + fileName;
+}
 
 // ✅ SAVE FUNCTION
 saveBtn.addEventListener('click', () => {
