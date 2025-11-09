@@ -1,2 +1,2 @@
-# gopay
+# mydoc
 freee docomant maker
